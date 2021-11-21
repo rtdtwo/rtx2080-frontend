@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav } from 'react-bootstrap';
 
 export default function NavBar() {
+    
     return (
         <div>
             <Nav
@@ -10,7 +11,7 @@ export default function NavBar() {
                 onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
                 >
                 <Nav.Item>
-                    <Nav.Link href="/home">Group 6</Nav.Link>
+                    <Nav.Link href="/home">RTX2080</Nav.Link>
                 </Nav.Item>
             </Nav>
         </div>
