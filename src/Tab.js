@@ -1,6 +1,7 @@
 import React from 'react'
 import { Nav } from 'react-bootstrap';
 import Things from './Things';
+import Services from './Services';
 import { useState, useEffect } from 'react';
 // import { Router } from 'react-router';
 import {
@@ -35,11 +36,12 @@ export default function Tab() {
             <Router>
                 <Nav fill variant="tabs" defaultActiveKey="/home">
                     <Nav.Item>
-                        {/* <Nav.Link href="/">Things</Nav.Link> */}
-                        <Nav.Link href="/">Things</Nav.Link>
+                        <Nav.Link eventKey="/">
+                            <Link to="/">Things </Link>
+                        </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-1">Services</Nav.Link>
+                        <Nav.Link href="/services" eventKey="/services">Services</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link eventKey="link-2">Relationships</Nav.Link>
@@ -65,6 +67,7 @@ export default function Tab() {
                 {/* </Routes> */}
                 <Routes>
                     <Route path="/" element={<Things thingsList={things}/>}/>
+                    <Route exact path="/services" element={<Services servicesList={things}/>}/>
                 </Routes>
             </Router>
         // </div>

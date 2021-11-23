@@ -3,10 +3,9 @@ import { Accordion } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 
 export default function Things(props) {
-    const [things, setThings] = useState(props.thingsList);
     return (
         <div>
-            {console.log(props.thingsList)}
+            <div className="mt-5"></div>
             {props.thingsList.map(function (i) {
                 return (
                 <>
