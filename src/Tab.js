@@ -5,6 +5,7 @@ import Services from './Services';
 import { useState, useEffect } from 'react';
 // import { Router } from 'react-router';
 import {
+
     BrowserRouter as Router,
     Switch,
     Routes,
@@ -13,7 +14,8 @@ import {
   } from "react-router-dom";
 
 export default function Tab() {
-    const dummy = [[{desc:"",id:1, name:"Thing1"}, {desc:"",id:2, name:"Thing1"},]];
+
+    const dummy = [[{desc:"",id:1, name:"Thing1"}, {desc:"",id:2, name:"Thing2"},]];
     const [things, setThings] = useState([])
     const servicecall = ()=> {
         // const apiUrl = 'http://ef31-184-188-101-162.ngrok.io/things';
@@ -25,13 +27,15 @@ export default function Tab() {
         //   .then((data) => data.result)
         //   .then((arr) => setThings(arr));
         setThings(dummy[0]);
-
         console.log(dummy[0]);
     }
     useEffect(()=>{
+
         servicecall();
     }, [])
+
     return (
+
         // <div>
             <Router>
                 <Nav fill variant="tabs" defaultActiveKey="/home">
@@ -67,7 +71,7 @@ export default function Tab() {
                 {/* </Routes> */}
                 <Routes>
                     <Route path="/" element={<Things thingsList={things}/>}/>
-                    <Route exact path="/services" element={<Services servicesList={things}/>}/>
+                    <Route exact path="/services" element={<Services lstThings={things}/>}/>
                 </Routes>
             </Router>
         // </div>
