@@ -5,13 +5,15 @@ import Services from './Services';
 import { useState, useEffect } from 'react';
 // import { Router } from 'react-router';
 import {
-
     BrowserRouter as Router,
     Switch,
     Routes,
     Route,
     Link
   } from "react-router-dom";
+import Relationships from './Relationships';
+import Recipe from './Recipe';
+import Apps from './Apps';
 
 export default function Tab() {
 
@@ -48,10 +50,13 @@ export default function Tab() {
                         <Nav.Link href="/services" eventKey="/services">Services</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-2">Relationships</Nav.Link>
+                        <Nav.Link href='/relations' eventKey="link-2">Relationships</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-3">Apps</Nav.Link>
+                        <Nav.Link href='/recipe' eventKey="link-3">Recipe</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link href='/apps' eventKey="link-4">Apps</Nav.Link>
                     </Nav.Item>
                 </Nav>
                 {/* <Routes> */}
@@ -72,6 +77,9 @@ export default function Tab() {
                 <Routes>
                     <Route path="/" element={<Things thingsList={things}/>}/>
                     <Route exact path="/services" element={<Services lstThings={things}/>}/>
+                    <Route exact path="/relations" element={<Relationships servicesList={things}/>}/>
+                    <Route exact path="/recipe" element={<Recipe servicesList={things}/>}/>
+                    <Route exact path="/apps" element={<Apps servicesList={things}/>}/>
                 </Routes>
             </Router>
         // </div>
