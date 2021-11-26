@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Dropdown } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
-
+import Card from './Card'
 export default function Services(props) {
     
     const services = [{"id":1,"thingId":1, "name":"Service 1", "icon": "", "desc":""}, {"id":3,"thingId":1, "name":"Service 3", "icon": "", "desc":""},{"id":2,"thingId":2, "name":"Service 2", "icon": "", "desc":""}];
@@ -44,10 +44,7 @@ export default function Services(props) {
     }
 
     return (
-
-      
-        <div>
-            <Container className="mt-5">
+        <Container className="mt-5">
             <Dropdown className onSelect={onselectThing}>
 
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -66,16 +63,14 @@ export default function Services(props) {
                     )})}
                 </Dropdown.Menu>
             </Dropdown>
-            </Container>
+            
             <h4>You selected {value}</h4>
             {lstDisplayedServices.map(function (i) {
                     return (
-                        <>
-                            <div>{i.name}</div>
-                        </>
+                        <Card id={i.id} name={i.name} className='servicecard' desc={i.desc} showDesc='false' draggable='false'>
+                        </Card>
             )})}
-        </div>
-
+        </Container>
        
         // props.servicesList
         

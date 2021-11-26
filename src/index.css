@@ -11,3 +11,49 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.flexbox{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 768px;
+  height: 70vh;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.flexbox .board{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 500px;
+  background-color: #313131;
+  padding: 15px;
+  overflow: scroll;
+}
+
+.noscroll{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 300px;
+  background-color: #313131;
+  padding: 15px;
+  margin: 2px solid red;
+}
+
+.flexbox .board .card{
+  background-color: #F3F3F3;
+  padding: 15px 25px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.servicecard{
+  background-color: #F3F3F3;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+}
