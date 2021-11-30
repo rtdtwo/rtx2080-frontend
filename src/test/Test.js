@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { COLUMN_NAMES } from "./constants";
 import { tasks } from "./tasks";
 import Card from "../Card";
+import { useState, useEffect } from 'react';
 
 import "./test.css";
 
@@ -12,18 +13,34 @@ const MovableItem = ({
   index,
   currentColumnName,
   moveCardHandler,
-  setItems
+  setItems,
 }) => {
   const changeItemColumn = (currentItem, columnName) => {
+    
     setItems((prevState) => {
       return prevState.map((e) => {
-          console.log("HEYY", columnName)
+          // console.log("HEYY", columnName)
         return {
           ...e,
           column: e.name === currentItem.name ? columnName : e.column
         };
       });
     });
+
+    // setList((prevState) => {
+    //   let filter = prevState.filter( (el)=> {
+    //     return el.column === "Relationships";
+    //   });
+    //   console.log("Filter - ", filter);
+    //   // return 
+    //   return prevState.map((e) => {
+    //       // console.log("HEYY", columnName)
+    //     return {
+    //       ...e,
+    //       column: e.name === "Relationships"
+    //     };
+    //   });
+    // });
   };
 
   const ref = useRef(null);
@@ -116,7 +133,7 @@ const MovableItem = ({
 };
 
 const Column = ({ children, className, title }) => {
-    console.log("Children" , children)
+    // console.log("Children" , children)
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: "CARD",
     drop: () => ({ name: title }),
@@ -161,9 +178,15 @@ const Column = ({ children, className, title }) => {
   );
 };
 
-export const Test = () => {
-  const [items, setItems] = useState(tasks);
-
+export const Test = (props) => {
+  const [items, setItems] = useState(props.list);
+  useEffect(()=>{
+    let newList = items.filter( (el)=> {
+          return el.column === "Relationships";
+      });
+      // console.log("Filter - ", newList)
+    props.setList(newList);
+  }, items)
   const moveCardHandler = (dragIndex, hoverIndex) => {
     const dragItem = items[dragIndex];
 

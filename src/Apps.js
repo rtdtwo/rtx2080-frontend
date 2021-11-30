@@ -4,6 +4,7 @@ import { Container, Dropdown, Row, Col } from 'react-bootstrap';
 import deleteImg from '../src/delete.png';
 
 export default function Apps() {
+    const [isDisabled , setIsDisabled ] = useState(false)
     const appsData = [{"appId":1,"name":"RTX2080","desc":"This app does nothing","nservices":4,"nrecipe":2,"nrelations":2},{"appId":2,"desc":"This app does something","nservices":4,"nrecipe":2,"nrelations":2}];
     const itemStyle = {
         height: '200px',
@@ -11,6 +12,16 @@ export default function Apps() {
     const imgStyle = {
         width: '25px',
     };
+    const onDisable = (event) => {
+        if (!isDisabled) {
+            setIsDisabled(true);
+        }else{
+            setIsDisabled(false);
+        }
+      }
+    // var divStyle = {
+    //     display:this.state.disableDiv?'block':'none'
+    // };
     return (
         <Container className="mt-5">
             Relations
@@ -30,12 +41,14 @@ export default function Apps() {
                         </Col>
                         <Col xs={4} style={itemStyle}>
                             <div className="text-end pt-2">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                                <label className="form-check-label" for="flexRadioDefault1">Enabled </label>
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-                                <label className="form-check-label" for="flexRadioDefault2">Disabled </label>
+                                {/* {console.log("Enabled - ", (i.appId+100))}
+                                {console.log("Enabled - ", (i.appId+21))} */}
+                                <input className="form-check-input" type="radio" name={"flexRadioDefault"+i.appId} id={i.appId+100} defaultChecked='true'/>
+                                <label className="form-check-label" htmlFor={i.appId+100}>Enabled </label>
+                                <input className="form-check-input" type="radio" name={"flexRadioDefault"+i.appId} id={i.appId+21}/>
+                                <label className="form-check-label" htmlFor={i.appId+21}>Disabled </label>
                                 <img style={imgStyle} src={deleteImg} id="delete" alt="BigCo Inc. logo"/>
-                                <label for="delete">Delete </label>
+                                <label htmlFor="delete">Delete </label>
                             </div>
                         </Col>
                     </Row>

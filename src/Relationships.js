@@ -17,9 +17,8 @@ export default function Relationships() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const services = [{"id":1,"thingId":1, "name":"Service 1", "icon": "", "desc":""}, {"id":3,"thingId":1, "name":"Service 3", "icon": "", "desc":""},{"id":2,"thingId":2, "name":"Service 2", "icon": "", "desc":""}];
+    const services = [{"id":1,"thingId":1, "name":"Service 1", "icon": "", "desc":"","column":"Services"}, {"id":3,"thingId":1, "name":"Service 3", "icon": "", "desc":"","column":"Services"},{"id":2,"thingId":2, "name":"Service 2", "icon": "", "desc":"","column":"Services"}];
     const relationdata = [{"id":1,"name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":2,"name":"relationship2","service1":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""},"service2":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""}},{"id":3,"name":"relationship3","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}}];
-    console.log(relationdata[0])
     return (
         <Container className="mt-5">
             Relations

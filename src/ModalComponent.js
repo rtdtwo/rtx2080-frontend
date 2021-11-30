@@ -3,9 +3,24 @@ import { Container, Dropdown, Row, Col, Modal, Button } from 'react-bootstrap';
 import Board from './Board'
 import Card from './Card'
 import { Test } from './test/Test';
+import { useState, useEffect } from 'react';
 
 function ModalComponent(props) {
     let lst = JSON.parse(JSON.stringify(props.list));
+    // console.log("Initial - ", lst)
+    const [list, setList] = useState(lst)
+    const updateList = () => {
+        console.log("update - ",list);
+    }
+
+    const relationshipServiceCall = () => {
+        //Make service call
+    }
+
+    useEffect(()=>{
+
+        updateList();
+    }, list)
     return (
             <Modal
                 show={props.show}
@@ -18,7 +33,7 @@ function ModalComponent(props) {
                     <Modal.Title>Modal title</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Test></Test>
+                    <Test setList={setList} list={props.list}></Test>
                     {/* <div className='flexbox'>
                         <Board id='board1' className='board'>
                             {lst.map(function (i) {
@@ -42,7 +57,7 @@ function ModalComponent(props) {
                     <Button variant="secondary" onClick={()=>props.setShow(false)}>
                         Close
                     </Button>
-                    <Button variant="primary">Understood</Button>
+                    <Button variant="primary" onClick={relationshipServiceCall}>Understood</Button>
                 </Modal.Footer>
             </Modal>
              
