@@ -2,6 +2,8 @@ import React from 'react'
 import { Container, Dropdown, Row, Col, Modal, Button } from 'react-bootstrap';
 import Board from './Board'
 import Card from './Card'
+import { Test } from './test/Test';
+
 function ModalComponent(props) {
     let lst = JSON.parse(JSON.stringify(props.list));
     return (
@@ -16,7 +18,8 @@ function ModalComponent(props) {
                     <Modal.Title>Modal title</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className='flexbox'>
+                    <Test></Test>
+                    {/* <div className='flexbox'>
                         <Board id='board1' className='board'>
                             {lst.map(function (i) {
                                 return (
@@ -33,7 +36,7 @@ function ModalComponent(props) {
                                 
                             </Board>
                         </div>
-                    </div>
+                    </div> */}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={()=>props.setShow(false)}>

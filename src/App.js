@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import Tab from './Tab';
 import Things from './Things';
 import React from "react";
+import { Test } from './test/Test';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,6 +13,7 @@ function App() {
     <>
         <NavBar></NavBar>
         <Tab></Tab>
+        {/* <Test></Test> */}
     </>
   );
 }

@@ -45,6 +45,8 @@ export default function Services(props) {
 
     return (
         <Container className="mt-5">
+            <div>
+            Filter: 
             <Dropdown className onSelect={onselectThing}>
 
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -63,8 +65,10 @@ export default function Services(props) {
                     )})}
                 </Dropdown.Menu>
             </Dropdown>
+            </div>
             
-            <h4>You selected {value}</h4>
+            
+            {/* <h4>You selected {value}</h4> */}
             {lstDisplayedServices.map(function (i) {
                     return (
                         <Card id={i.id} name={i.name} className='servicecard' desc={i.desc} showDesc='false' draggable='false'>
