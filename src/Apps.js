@@ -81,12 +81,13 @@ export default function Apps() {
         if (document.getElementById("enDis" + id).innerHTML == "Enable") {
 
             console.log("Enable was clicked");
-            document.getElementById("enDis" + id).innerHTML = "Disable"
+            document.getElementById("enDis" + id).innerHTML = "Disable";
             //On click of enable
         } else if (document.getElementById("enDis" + id).innerHTML == "Disable") {
 
             console.log("Disable was clicked");
             document.getElementById("enDis" + id).innerHTML = "Enable"
+
             //On click of diable
         }
     }
@@ -112,7 +113,7 @@ export default function Apps() {
     return (
         <Container className="mt-5">
 
-            <Button onClick={onImport}>Import App</Button>
+            <Button variant ="success" onClick={onImport}>Import App</Button>
             <Button onClick={handleShow}>Create App</Button>
             {appsData.map(function (i) {
 
@@ -142,10 +143,10 @@ export default function Apps() {
                                     <Button variant="primary" id={"enDis" + i.id} size="sm" onClick={(e) => handleOnClickEnableDisable(i.id, e)}>
                                         {i.enabled == "true" ? "Disable" : "Enable"}
                                     </Button>
-                                    <Button variant="primary" id={"edit" + i.id} size="sm" onClick={(e) => handleOnClickEdit(i, e)}>
+                                    <Button variant="info" id={"edit" + i.id} size="sm" onClick={(e) => handleOnClickEdit(i, e)}>
                                         Edit
                                     </Button>
-                                    <Button variant="primary" id={"delete" + i.id} size="sm" onClick={(e) => handleOnClickDelete(i.id, e)}>
+                                    <Button variant="danger" id={"delete" + i.id} size="sm" onClick={(e) => handleOnClickDelete(i.id, e)}>
                                         Delete
                                     </Button>
                                     {/* <input className="form-check-input" type="radio" name={"flexRadioDefault"+i.appId} id={i.appId+100} defaultChecked='true'/>
