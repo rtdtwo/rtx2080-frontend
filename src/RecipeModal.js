@@ -89,7 +89,7 @@ function RecipeModal(props) {
                 onHide={props.setShow}
                 backdrop="static"
                 keyboard={false}
-                size='xl'
+                size='lg'
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
@@ -97,7 +97,7 @@ function RecipeModal(props) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <div>
+                <div className="mb-3">
                     Select Relationships: 
                     <Dropdown className onSelect={onselectThing}>
 

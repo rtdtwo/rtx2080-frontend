@@ -26,7 +26,8 @@ function Card(props) {
         
         <div id={props.id} onDragStart={dragStart} onDragOver={dragOver} draggable={props.draggable} className={props.className}>
             <h5 className="mt-2 text-center">{props.name}</h5>
-            <div className="col-md-5 text-start pt-2">
+            {/* <div className="col-md-5 text-start pt-2"> */}
+            <div className="text-start pt-2">
                 <p><i className="bi bi-caret-right-fill"></i> <strong>ID : </strong>{props.id}</p>
                 <p><i className="bi bi-caret-right-fill"></i> <strong>Name : </strong>{props.name}</p>
                 {props.isRecipeTab ? (<p><i className="bi bi-caret-right-fill"></i> <strong>No of Relationships : </strong>{props.relSize}</p>) : ""}

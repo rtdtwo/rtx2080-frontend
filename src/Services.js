@@ -45,7 +45,7 @@ export default function Services(props) {
 
     return (
         <Container className="mt-5">
-            <div>
+            <div className="mb-3">
             Filter: 
             <Dropdown className onSelect={onselectThing}>
 

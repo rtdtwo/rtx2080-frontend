@@ -45,7 +45,7 @@ export default function Recipe() {
     return (
         <div>
             <Container>
-                <Button onClick={sendCreatedata}>Create Recipe</Button>
+                <Button className="mb-3 mt-3" onClick={sendCreatedata}>Create Recipe</Button>
                 {show ? returnModal() : ""}
                 {/* <RecipeModal show={show} name={recipedata[0].name} recipeData={recipedata[0]} setShow={setShow}></RecipeModal> */}
                 {/* <h4>You selected {value}</h4> */}

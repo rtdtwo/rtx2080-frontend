@@ -21,8 +21,8 @@ export default function Relationships() {
     const relationdata = [{"id":1,"name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":2,"name":"relationship2","service1":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""},"service2":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""}},{"id":3,"name":"relationship3","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}}];
     return (
         <Container className="mt-5">
-            Relations
-            <Button onClick={handleShow}>Create Relationship</Button>
+            Relations : &nbsp;&nbsp;
+            <Button onClick={handleShow}> Create Relationship</Button>
             <ModalComponent show={show} list={services} setShow={setShow}></ModalComponent>
             {relationdata.map(function (i) {
                 return (
