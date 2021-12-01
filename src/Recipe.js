@@ -31,7 +31,8 @@ export default function Recipe() {
         selectedRelationship.push(relJsonData.relationships)
         setSelectedList(relJsonData.relationships)
         setSelectedName(relJsonData.name)
-        setShow(true);
+        // setShow(true);
+        handleShow()
     }
 
     const returnModal = ()=>{
@@ -45,7 +46,7 @@ export default function Recipe() {
         <div>
             <Container>
                 <Button onClick={sendCreatedata}>Create Recipe</Button>
-                {returnModal()}
+                {show ? returnModal() : ""}
                 {/* <RecipeModal show={show} name={recipedata[0].name} recipeData={recipedata[0]} setShow={setShow}></RecipeModal> */}
                 {/* <h4>You selected {value}</h4> */}
                 {lstExistingRecipes.map(function (i) {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { Container, Dropdown, Row, Col, Button, Icon } from 'react-bootstrap';
 import deleteImg from '../src/delete.png';
+import AppsModal from './AppsModal'
 
 export default function Apps() {
 
@@ -74,6 +75,8 @@ export default function Apps() {
     //     console.log("##On selecting a recipe to edit--", selectedAppData);
     //     setShow(true);
     // }
+    const [selectedList, setSelectedList] = useState([]);
+    const [selectedName, setSelectedName] = useState("");
 
     const handleOnClickEnableDisable = (id, e) => {
 
@@ -92,8 +95,9 @@ export default function Apps() {
         }
     }
     const handleOnClickEdit = (i, e) => {
-
-        console.log("## inside handleOnClickEdit---", i);
+        setSelectedName(i.name)
+        setSelectedList(i.recipes)
+        console.log("## inside handleOnClickEdit---", i.recipes);
 
     }
     const onImport = (e) => {
@@ -107,6 +111,15 @@ export default function Apps() {
         document.getElementById(id).style.display = "none";
         //Call logic for deletion of app;       
     }
+
+    // const returnModal = ()=>{
+    //     return (
+    //         // <AppsModal show={show} name={selectedName} recipeData={selectedList} setShow={setShow}></AppsModal>
+    //         // <RecipeModal show={show} name={recipedata[0].name} recipeData={recipedata[0]} setShow={setShow}></RecipeModal>
+    //         ""
+    //     )
+    // }
+
     // var divStyle = {
     //     display:this.state.disableDiv?'block':'none'
     // };
@@ -115,6 +128,7 @@ export default function Apps() {
 
             <Button variant ="success" onClick={onImport}>Import App</Button>
             <Button onClick={handleShow}>Create App</Button>
+            {/* {returnModal()} */}
             {appsData.map(function (i) {
 
                 let intRecipeSize = i.recipes.length;
