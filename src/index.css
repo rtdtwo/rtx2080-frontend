@@ -35,6 +35,25 @@ code {
   overflow: scroll;
 }
 
+.flexboxcards{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70vh;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.cards{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 300px;
+  min-height: 500px;
+  padding: 15px;
+  overflow: scroll;
+}
+
 .noscroll{
   display: flex;
   flex-direction: row;

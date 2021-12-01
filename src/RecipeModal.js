@@ -93,9 +93,7 @@ function RecipeModal(props) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        <Alert key={props.name} variant='dark'>
-                            {props.name}
-                        </Alert>
+                        {props.name}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -118,6 +116,7 @@ function RecipeModal(props) {
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
+                <div className="cards flexboxcards">
                     {relationList.map(function (i) {
                         console.log("inside",i);
                         return (
@@ -135,51 +134,13 @@ function RecipeModal(props) {
                             </Card>
                         )
                     })}
-                {/* <div>
-                    Filter: 
-                    <Dropdown className onSelect={onselectThing}>
-
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            {value}
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                        
-                            <Dropdown.Item eventKey="All">All</Dropdown.Item>
-
-                            {props.lstThings.map(function (i) {
-                            return (
-                                <>
-                                    <Dropdown.Item eventKey={i.id}>{i.name}</Dropdown.Item>
-                                </>
-                            )})}
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </div> */}
-                    {/* <div className='flexbox'>
-                        <Board id='board1' className='board'>
-                            {lst.map(function (i) {
-                                return (
-                                <>
-                                    <Card id={i.id} name={i.name} className='card' desc={i.desc} showDesc='false' draggable='true'>
-                                    </Card>
-                                </>
-                                );
-                            })}
-                        </Board>
-
-                        <div>
-                            <Board id='boardside2' className='board'>
-                                
-                            </Board>
-                        </div>
-                    </div> */} 
+                </div> 
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={()=>props.setShow(false)}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={relationshipServiceCall}>Understood</Button>
+                    <Button variant="primary" onClick={relationshipServiceCall}>Create Recipe</Button>
                 </Modal.Footer>
             </Modal>
              
