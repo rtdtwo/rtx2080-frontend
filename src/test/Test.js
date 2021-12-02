@@ -179,8 +179,8 @@ const Column = ({ children, className, title }) => {
 };
 
 export const Test = (props) => {
-  // const [items, setItems] = useState(props.list);
-  const [items, setItems] = useState(tasks);
+  const [items, setItems] = useState(props.list);
+  // const [items, setItems] = useState(tasks);
   useEffect(()=>{
     let newList = items.filter( (el)=> {
           return el.column === "Relationships";
@@ -221,6 +221,7 @@ export const Test = (props) => {
 //       ));
 //   };
   const returnItemsForColumn = (columnName) => {
+    console.log("ITEMs - ", items)
     return items
       .filter((item) => item.column === columnName)
       .map((item, index) => (

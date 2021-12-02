@@ -1,6 +1,6 @@
 import React from 'react'
 import { Accordion, Container } from 'react-bootstrap'
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 
 export default function Things(props) {
     return (
@@ -17,6 +17,7 @@ export default function Things(props) {
                                     <div className="col-md-5 text-start pt-2">
                                         <p><i className="bi bi-caret-right-fill"></i> <strong>ID: </strong>{i.id}</p>
                                         <p><i className="bi bi-caret-right-fill"></i> <strong>Desc: </strong>{i.id}</p>
+                                        <p><i className="bi bi-caret-right-fill"></i> <strong>Space ID: </strong>{i.space}</p>
                                     </div>
                                 </div>
                             </Accordion.Body>

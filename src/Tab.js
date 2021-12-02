@@ -7,7 +7,6 @@ import { URL } from "./test/constants";
 // import { Router } from 'react-router';
 import {
     BrowserRouter as Router,
-    Switch,
     Routes,
     Route,
     Link

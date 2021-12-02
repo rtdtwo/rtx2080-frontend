@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container, Dropdown, Row, Col, Modal, Button } from 'react-bootstrap';
-import Board from './Board'
-import Card from './Card'
+import {Modal, Button } from 'react-bootstrap';
+// import Board from './Board'
+// import Card from './Card'
 import { Test } from './test/Test';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { URL } from "./test/constants";
 
 function ModalComponent(props) {

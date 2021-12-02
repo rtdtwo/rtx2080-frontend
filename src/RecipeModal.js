@@ -1,9 +1,10 @@
 import React from 'react'
-import { Container, Dropdown, Row, Col, Modal, Button, Alert, Card } from 'react-bootstrap';
-import Board from './Board'
+import { Dropdown, Modal, Button, Card, Alert } from 'react-bootstrap';
+// import Board from './Board'
 // import Card from './Card'
-import { Test } from './test/Test';
+// import { Test } from './test/Test';
 import { useState, useEffect } from 'react';
+import { URL } from "./test/constants";
 
 function RecipeModal(props) {
     
@@ -12,53 +13,68 @@ function RecipeModal(props) {
     // {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}},{"id":"relationship5","name":"relationship5","service1":{"id":7,"thingId":7,"name":"Service7","icon":"","desc":""},"service2":{"id":8,"thingId":8,"name":"Service8","icon":"","desc":""}},{"id":"relationship6","name":"relationship6","service1":{"id":9,"thingId":9,"name":"Service9","icon":"","desc":""},"service2":{"id":10,"thingId":10,"name":"Service10","icon":"","desc":""}},{"id":"relationship7","name":"relationship7","service1":{"id":12,"thingId":9,"name":"Service12","icon":"","desc":""},"service2":{"id":11,"thingId":10,"name":"Service11","icon":"","desc":""}}]
     // let lst = JSON.parse(JSON.stringify(props.recipeData));
     let lst= props.recipeData
-    
-    const [relationList,setRelationList]=useState([]);
     // console.log("Recipe modal list- ", lst)
     // console.log("Recipe modal list- ", relationList)
     
     // setRelationList(lst)
     const [value,setValue]=useState('select');
-    // let jsn = JSON.parse(lst[0]);
-    // lst = lst.relationships;
-    // let dummylst = JSON.parse(JSON.stringify(props.dummyData));
-    // console.log("recipe lst - ", lst)
-    // console.log("recipe lst - ", jsn.relationships)
-    // console.log("recipe dummy lst - ", dummylst.relationships)
-    // console.log("recipe lst - ", relationdata)
-    // let filteredData = relationdata.filter(ar => !dummylst.relationships.find(rm => (rm.name === ar.name)));
+    
+    
     let fData = props.relationdata.filter(ar => !lst.find(rm => (rm.name == ar.name)));
-    const [filteredData, setFilteredData] = useState([]) 
-    const [relationName, setRelationName] = useState("")
-    // console.log("recipe filteredData - ", filteredData)
-    // const [list, setList] = useState(lst)
-    // const [newItemsList, setNewItemsList] = useState(filteredData)
-    // const updateList = () => {
-    //     console.log("update - ",list);
-    // }
+    const [relationList,setRelationList]=useState(lst);
+    const [filteredData, setFilteredData] = useState(fData) 
+    const [recipeName, setRecipeName] = useState("")
+    
+    const recipeServiceCall = () => {
+        if(recipeName === ""){
+            console.log("Recipe name Null")
+        }else{
 
-    // const [lstDisplayedServices,setServices] = useState(services);
+            let relList = []
+            for(var i=0;i<relationList.length;i++){
+                console.log("u[pdated - " ,relationList[i]);
+                relList.push(relationList[i].name)
+            }
+            let data = {"name":recipeName, "relationships":relList}
+            console.log("Before service call - ", data)
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            };
+            //Make service call
+            
+            fetch(URL+"recipes",requestOptions)
+            .then((res) => {
+                console.log("HEYYY");
+                return res.json();
+            })
+            .then((data) => {
+                console.log("RESULT",data.result);
+                props.setShow(false)
+                setRecipeName("")
+                //   data.result
+            });
+            
+            //   props.setShow(false)
+        }
+    }
 
-    // const onselectThing=(e)=>{
-
-    //     console.log(e);
-    //     selectedThingId = e;
-    //     e= e == "All" ? e : "Thing " + e;
-    //     // setValue(e)
-    //     // displayRelatedServices(selectedThingId);
-    // }
     const onselectThing=(i)=>{
+        console.log("Selected:",i)
         let newList = filteredData.filter((el)=> {
             return el.name === i;
         });
+        console.log("Selected NewList:",newList)
         let updatedList = filteredData.filter((el)=> {
             return el.name !== i;
         });
+        console.log("Selected updatedList:",updatedList)
         setFilteredData(updatedList)
         setRelationList(prevState => {
             return [...prevState, newList[0]]
         })
-        console.log("u[pdated - " ,relationList);
+        
     }
 
     const handleClose = (i,e) => {
@@ -82,6 +98,7 @@ function RecipeModal(props) {
     },[])
 
     const relationshipServiceCall = () => {
+        recipeServiceCall()
         //Make service call
     }
     return (
@@ -99,7 +116,7 @@ function RecipeModal(props) {
                 </Modal.Header>
                 <Modal.Body>
                 <div className="mb-3 text-center justify-content-center">
-                        <input type="text" value={relationName} onChange={(e)=>{setRelationName(e.target.value)}} className="form-control" style={{ width: '100%' }} placeholder="Enter the relationship name" aria-label="Username" aria-describedby="basic-addon1"/>
+                        <input type="text" value={recipeName} onChange={(e)=>{setRecipeName(e.target.value)}} className="form-control" style={{ width: '100%' }} placeholder="Enter the relationship name" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
                 <div className="mb-3">
                     Select Relationships: 
@@ -122,7 +139,6 @@ function RecipeModal(props) {
                 </div>
                 <div className="cards flexboxcards">
                     {relationList.map(function (i) {
-                        console.log("inside",i);
                         return (
                             <Card className="mt-3">
                                 <Card.Header>

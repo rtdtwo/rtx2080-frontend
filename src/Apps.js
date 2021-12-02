@@ -1,15 +1,34 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { Container, Dropdown, Row, Col, Button, Icon, Form } from 'react-bootstrap';
-import deleteImg from '../src/delete.png';
+// import deleteImg from '../src/delete.png';
 import AppsModal from './AppsModal'
+import { URL } from "./test/constants";
 
 export default function Apps() {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const [recipeList, setRecipeList] = useState([]);
     const handleShow = () => setShow(true);
     const [isDisabled, setIsDisabled] = useState(false)
+
+    const servicecallForRecipes = ()=> {
+        const apiUrl = URL+'recipes';
+        fetch(apiUrl)
+          .then((res) => {
+              console.log("HEYYY recipe");
+                return res.json();
+            })
+          .then((data) => data.result)
+          .then((arr) => {
+            setRecipeList(arr)
+          });
+    }
+
+    useEffect(()=>{
+        servicecallForRecipes();
+    }, [])
     const lstExistingRecipes = [{
         "id": 1, "name": "Recipe 1", "Relationships": [{ "id": 1, "name": "relationship1", "service1": { "id": 1, "thingId": 1, "name": "Service1", "icon": "", "desc": "" }, "service2": { "id": 2, "thingId": 2, "name": "Service2", "icon": "", "desc": "" } }, { "id": 2, "name": "relationship2", "service1": { "id": 3, "thingId": 3, "name": "Service3", "icon": "", "desc": "" }, "service2": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" } }, { "id": 3, "name": "relationship3", "service1": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" }, "service2": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" } },
         { "id": 4, "name": "relationship4", "service1": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" }, "service2": { "id": 6, "thingId": 6, "name": "Service6", "icon": "", "desc": "" } }, { "id": 5, "name": "relationship5", "service1": { "id": 7, "thingId": 7, "name": "Service7", "icon": "", "desc": "" }, "service2": { "id": 8, "thingId": 8, "name": "Service8", "icon": "", "desc": "" } }, { "id": 6, "name": "relationship6", "service1": { "id": 9, "thingId": 9, "name": "Service9", "icon": "", "desc": "" }, "service2": { "id": 10, "thingId": 10, "name": "Service10", "icon": "", "desc": "" } }]
@@ -95,6 +114,7 @@ export default function Apps() {
         }
     }
     const handleOnClickRun = (i, e) => {
+        handleShow()
         setSelectedName(i.name)
         setSelectedList(i.recipes)
         console.log("## inside handleOnClickRun---", i.recipes);
@@ -126,7 +146,7 @@ export default function Apps() {
 
     return (
         <Container className="mt-5">
-
+            {show ? (<AppsModal show={show} setShow={setShow}></AppsModal>) : ""}
             <Form>
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Import App</Form.Label>
@@ -137,9 +157,10 @@ export default function Apps() {
             {/* <Button variant ="success" onClick={onImport}>Import App</Button> */}
             {/* <Button onClick={handleShow}>Create App</Button> */}
             {/* {returnModal()} */}
-            {appsData.map(function (i) {
+            {console.log("Apps tab - ", recipeList)}
+            {recipeList.map(function (i) {
 
-                let intRecipeSize = i.recipes.length;
+                let intRecipeSize = i.relationships.length;
                 let index = i.id - 1;
                 //     if(i.enabled == "true") {
 
@@ -157,7 +178,7 @@ export default function Apps() {
                                     <p><i className="bi bi-caret-right-fill"></i> <strong>Id: </strong>{i.id}</p>
                                     <p><i className="bi bi-caret-right-fill"></i> <strong>Name: </strong>{i.name}</p>
                                     <p><i className="bi bi-caret-right-fill"></i> <strong>Description: </strong>{i.desc}</p>
-                                    <p><i className="bi bi-caret-right-fill"></i> <strong>Number of recipes: </strong>{intRecipeSize}</p>
+                                    <p><i className="bi bi-caret-right-fill"></i> <strong>Number of relationships: </strong>{intRecipeSize}</p>
                                 </div>
                             </Col>
                             <Col xs={4} style={itemStyle}>

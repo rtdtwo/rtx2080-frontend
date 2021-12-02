@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Container, Dropdown, Row, Col, Modal, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import arrow from '../src/darrow.jpg';
-import Board from './Board'
+// import Board from './Board'
 import Card from './Card'
 import ModalComponent from './ModalComponent'
 import { URL } from "./test/constants";
@@ -46,7 +46,7 @@ export default function Relationships() {
             setRelationdata(arr)
           });
         // setThings(dummy[0]);
-        console.log("##services - ", relationdata);
+        // console.log("##services - ", relationdata);
     }
     useEffect(()=>{
 
@@ -74,7 +74,7 @@ export default function Relationships() {
                 return (
                 <>
                     <Row className="mt-5 justify-content-md-center">
-                        <h4 className="mb-2 text-center">Relationship {i.id}</h4>
+                        <h4 className="mb-2 text-center">{i.id}</h4>
                         <Col xs={4} className="border rounded border-secondary" style={itemStyle}>
                             {/* <h5 className="mt-3 text-center">Service {i.service1.id}</h5>
                             <div className="col-md-5 text-start pt-2">
