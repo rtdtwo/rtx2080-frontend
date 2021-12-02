@@ -5,7 +5,8 @@ import { Container, Dropdown, Row, Col, Button, Icon, Form } from 'react-bootstr
 import AppsModal from './AppsModal'
 import { URL } from "./test/constants";
 import Image from 'react-bootstrap/Image'
-import logo from './logo.svg'; // with import
+import logo_react from './logo.svg'; // with import
+import logo from '../src/rtx2080.jfif'
 
 export default function Apps() {
 
@@ -31,56 +32,11 @@ export default function Apps() {
     useEffect(()=>{
         servicecallForRecipes();
     }, [])
-    const lstExistingRecipes = [{
-        "id": 1, "name": "Recipe 1", "Relationships": [{ "id": 1, "name": "relationship1", "service1": { "id": 1, "thingId": 1, "name": "Service1", "icon": "", "desc": "" }, "service2": { "id": 2, "thingId": 2, "name": "Service2", "icon": "", "desc": "" } }, { "id": 2, "name": "relationship2", "service1": { "id": 3, "thingId": 3, "name": "Service3", "icon": "", "desc": "" }, "service2": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" } }, { "id": 3, "name": "relationship3", "service1": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" }, "service2": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" } },
-        { "id": 4, "name": "relationship4", "service1": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" }, "service2": { "id": 6, "thingId": 6, "name": "Service6", "icon": "", "desc": "" } }, { "id": 5, "name": "relationship5", "service1": { "id": 7, "thingId": 7, "name": "Service7", "icon": "", "desc": "" }, "service2": { "id": 8, "thingId": 8, "name": "Service8", "icon": "", "desc": "" } }, { "id": 6, "name": "relationship6", "service1": { "id": 9, "thingId": 9, "name": "Service9", "icon": "", "desc": "" }, "service2": { "id": 10, "thingId": 10, "name": "Service10", "icon": "", "desc": "" } }]
-    },
-    {
-        "id": 2, "name": "Recipe 2", "Relationships": [{ "id": 1, "name": "relationship1", "service1": { "id": 1, "thingId": 1, "name": "Service1", "icon": "", "desc": "" }, "service2": { "id": 2, "thingId": 2, "name": "Service2", "icon": "", "desc": "" } }, { "id": 2, "name": "relationship2", "service1": { "id": 3, "thingId": 3, "name": "Service3", "icon": "", "desc": "" }, "service2": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" } }, { "id": 3, "name": "relationship3", "service1": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" }, "service2": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" } },
-        { "id": 4, "name": "relationship4", "service1": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" }, "service2": { "id": 6, "thingId": 6, "name": "Service6", "icon": "", "desc": "" } }]
-    },
-    {
-        "id": 3, "name": "Recipe 3", "Relationships": [{ "id": 1, "name": "relationship1", "service1": { "id": 1, "thingId": 1, "name": "Service1", "icon": "", "desc": "" }, "service2": { "id": 2, "thingId": 2, "name": "Service2", "icon": "", "desc": "" } }, { "id": 2, "name": "relationship2", "service1": { "id": 3, "thingId": 3, "name": "Service3", "icon": "", "desc": "" }, "service2": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" } }, { "id": 3, "name": "relationship3", "service1": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" }, "service2": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" } },
-        { "id": 4, "name": "relationship4", "service1": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" }, "service2": { "id": 6, "thingId": 6, "name": "Service6", "icon": "", "desc": "" } }, { "id": 5, "name": "relationship5", "service1": { "id": 7, "thingId": 7, "name": "Service7", "icon": "", "desc": "" }, "service2": { "id": 8, "thingId": 8, "name": "Service8", "icon": "", "desc": "" } }]
-    }
-    ];
-    const appsData = [
-        {
-            "id": 1, "name": "RTX2080", "desc": "This app does something 1", "icon": "testIcon1",
-            "recipes": [
-                {
-                    "id": 1, "name": "Recipe 1", "Relationships": [{ "id": 1, "name": "relationship1", "service1": { "id": 1, "thingId": 1, "name": "Service1", "icon": "", "desc": "" }, "service2": { "id": 2, "thingId": 2, "name": "Service2", "icon": "", "desc": "" } }, { "id": 2, "name": "relationship2", "service1": { "id": 3, "thingId": 3, "name": "Service3", "icon": "", "desc": "" }, "service2": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" } }, { "id": 3, "name": "relationship3", "service1": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" }, "service2": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" } },
-                    { "id": 4, "name": "relationship4", "service1": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" }, "service2": { "id": 6, "thingId": 6, "name": "Service6", "icon": "", "desc": "" } }, { "id": 5, "name": "relationship5", "service1": { "id": 7, "thingId": 7, "name": "Service7", "icon": "", "desc": "" }, "service2": { "id": 8, "thingId": 8, "name": "Service8", "icon": "", "desc": "" } }, { "id": 6, "name": "relationship6", "service1": { "id": 9, "thingId": 9, "name": "Service9", "icon": "", "desc": "" }, "service2": { "id": 10, "thingId": 10, "name": "Service10", "icon": "", "desc": "" } }]
-                }
-            ],
-            "enabled": "true"
-        },
-        {
-            "id": 2, "name": "App 2", "desc": "This app does something 2", "icon": "testIcon2",
-            "recipes": [
-                {
-                    "id": 2, "name": "Recipe 2", "Relationships": [{ "id": 1, "name": "relationship1", "service1": { "id": 1, "thingId": 1, "name": "Service1", "icon": "", "desc": "" }, "service2": { "id": 2, "thingId": 2, "name": "Service2", "icon": "", "desc": "" } }, { "id": 2, "name": "relationship2", "service1": { "id": 3, "thingId": 3, "name": "Service3", "icon": "", "desc": "" }, "service2": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" } }, { "id": 3, "name": "relationship3", "service1": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" }, "service2": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" } },
-                    { "id": 4, "name": "relationship4", "service1": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" }, "service2": { "id": 6, "thingId": 6, "name": "Service6", "icon": "", "desc": "" } }]
-                }
-            ],
-            "enabled": "true"
-        },
-        {
-            "id": 3, "name": "App 3", "desc": "This app does something 3", "icon": "testIcon3",
-            "recipes": [
-                {
-                    "id": 3, "name": "Recipe 3", "Relationships": [{ "id": 1, "name": "relationship1", "service1": { "id": 1, "thingId": 1, "name": "Service1", "icon": "", "desc": "" }, "service2": { "id": 2, "thingId": 2, "name": "Service2", "icon": "", "desc": "" } }, { "id": 2, "name": "relationship2", "service1": { "id": 3, "thingId": 3, "name": "Service3", "icon": "", "desc": "" }, "service2": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" } }, { "id": 3, "name": "relationship3", "service1": { "id": 4, "thingId": 4, "name": "Service4", "icon": "", "desc": "" }, "service2": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" } },
-                    { "id": 4, "name": "relationship4", "service1": { "id": 5, "thingId": 5, "name": "Service5", "icon": "", "desc": "" }, "service2": { "id": 6, "thingId": 6, "name": "Service6", "icon": "", "desc": "" } }, { "id": 5, "name": "relationship5", "service1": { "id": 7, "thingId": 7, "name": "Service7", "icon": "", "desc": "" }, "service2": { "id": 8, "thingId": 8, "name": "Service8", "icon": "", "desc": "" } }]
-                }
-            ],
-            "enabled": "false"
-        }
-    ];
     const itemStyle = {
         height: '200px',
     };
     const imgStyle = {
-        width: '25px',
+        width: '100px',
     };
     const onDisable = (event) => {
 
@@ -234,11 +190,13 @@ export default function Apps() {
                 return (
                     <>
                         <Row id={i.id} className="mt-5 justify-content-md-center border rounded border-secondary">
-                            <h4 className="mb-2 text-center">App {i.id}</h4>
-                            <Col>
-                                <Image src={logo} responsive />
+                            <h4 className="mb-2 text-center">App Name:  {i.id}</h4>
+                            <Col xs={2}  className="d-flex align-items-center" style={itemStyle}>
+                                <div className="d-flex align-items-center">
+                                    <img style={imgStyle} src={logo} alt="BigCo Inc. logo"/>
+                                </div>
                             </Col>
-                            <Col xs={5} className="" style={itemStyle}>
+                            <Col xs={5} className="d-flex align-items-center" style={itemStyle}>
                                 <div className="text-start pt-2">
                                     <p><i className="bi bi-caret-right-fill"></i> <strong>Id: </strong>{i.id}</p>
                                     <p><i className="bi bi-caret-right-fill"></i> <strong>Name: </strong>{i.name}</p>

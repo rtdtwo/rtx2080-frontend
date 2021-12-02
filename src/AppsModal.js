@@ -18,7 +18,8 @@ function AppsModal(props) {
             })
           .then((data) => data.result)
           .then((arr) => {
-              setLogList(arr.result);
+              console.log("Array - ", arr)
+              setLogList(arr[0].result);
               setLoading(false);
           });
         // setThings(dummy[0]);
@@ -28,6 +29,16 @@ function AppsModal(props) {
 
         servicecall();
     }, [])
+
+    const ColoredLine = ({ color }) => (
+        <hr
+            style={{
+                color: color,
+                backgroundColor: color,
+                height: 5
+            }}
+        />
+    );
     return (
             <Modal
                 show={props.show}
@@ -37,30 +48,36 @@ function AppsModal(props) {
                 size='xl'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Logs</Modal.Title>
+                    <Modal.Title>Atlas Logs</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* {loading ? <Spinner animation="border" /> : (
+                    {loading ? <Spinner animation="border" /> : (
                         <div className="cards flexboxcards">
                             <Card className="mt-3">
                                     <Card.Header>
                                         <h5 style={{display: 'inline-block'}}>Response</h5>
                                     </Card.Header>
-                                    {logList.map(function (i) {
-                                        return (
-                                            <Card.Body>
-                                                <Card.Text>
-                                                    <p>Service 1 : {i.service1.name}</p>
-                                                    <p>Service 2 : {i.service2.name}</p>
-                                                </Card.Text>
-                                            </Card.Body>
-                                        )
-                                    })}
+                                    <Card.Body>
+                                        {logList.map(function (i) {
+                                            {console.log("LOGLIST ITEM : ", i)}
+                                            return (
+                                                    <Card.Text>
+                                                        <p>RelationShip : {i.relationship.name}</p>
+                                                        {
+                                                            i.result.map(function (j){
+                                                                {console.log("LOGLIST relation - ", j)}
+                                                                return (<p> <span>&#183;</span> {j.service.name} result : <span  style={{backgroundColor: 'green'}}>{j.result[1].Status}</span></p>)
+                                                            })
+                                                        }
+                                                    </Card.Text>
+                                            )
+                                        })}
+                                    </Card.Body>
                                     
                                 </Card>
                         
                         </div> 
-                    )} */}
+                    )}
 
                 </Modal.Body>
                 <Modal.Footer>
