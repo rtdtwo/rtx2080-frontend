@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Container, Dropdown, Row, Col, Button, Icon } from 'react-bootstrap';
+import { Container, Dropdown, Row, Col, Button, Icon, Form } from 'react-bootstrap';
 import deleteImg from '../src/delete.png';
 import AppsModal from './AppsModal'
 
@@ -94,10 +94,10 @@ export default function Apps() {
             //On click of diable
         }
     }
-    const handleOnClickEdit = (i, e) => {
+    const handleOnClickRun = (i, e) => {
         setSelectedName(i.name)
         setSelectedList(i.recipes)
-        console.log("## inside handleOnClickEdit---", i.recipes);
+        console.log("## inside handleOnClickRun---", i.recipes);
 
     }
     const onImport = (e) => {
@@ -123,11 +123,19 @@ export default function Apps() {
     // var divStyle = {
     //     display:this.state.disableDiv?'block':'none'
     // };
+
     return (
         <Container className="mt-5">
 
-            <Button variant ="success" onClick={onImport}>Import App</Button>
-            <Button onClick={handleShow}>Create App</Button>
+            <Form>
+            <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Import App</Form.Label>
+                <Form.Control type="file" />
+            </Form.Group>
+          
+            </Form>
+            {/* <Button variant ="success" onClick={onImport}>Import App</Button> */}
+            {/* <Button onClick={handleShow}>Create App</Button> */}
             {/* {returnModal()} */}
             {appsData.map(function (i) {
 
@@ -157,8 +165,8 @@ export default function Apps() {
                                     <Button variant="primary" id={"enDis" + i.id} size="sm" onClick={(e) => handleOnClickEnableDisable(i.id, e)}>
                                         {i.enabled == "true" ? "Disable" : "Enable"}
                                     </Button>
-                                    <Button variant="info" id={"edit" + i.id} size="sm" onClick={(e) => handleOnClickEdit(i, e)}>
-                                        Edit
+                                    <Button variant="success" id={"run" + i.id} size="sm" onClick={(e) => handleOnClickRun(i, e)}>
+                                        Run
                                     </Button>
                                     <Button variant="danger" id={"delete" + i.id} size="sm" onClick={(e) => handleOnClickDelete(i.id, e)}>
                                         Delete
