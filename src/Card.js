@@ -17,9 +17,9 @@ function Card(props) {
     }
 
     const handleEditRecipe = props => {
-        console.log("##On selecting a recipe to edit--", props);
-        console.log("##On selecting a recipe to edit ID--", props.id);
-        console.log("##On selecting a recipe to edit Name--", props.name);
+        // console.log("##On selecting a recipe to edit--", props);
+        // console.log("##On selecting a recipe to edit ID--", props.id);
+        // console.log("##On selecting a recipe to edit Name--", props.name);
         
     }
     return (

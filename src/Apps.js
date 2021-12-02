@@ -20,13 +20,15 @@ export default function Apps() {
         const apiUrl = URL+'recipes';
         fetch(apiUrl)
           .then((res) => {
-              console.log("HEYYY recipe");
+            //   console.log("HEYYY recipe");
                 return res.json();
             })
           .then((data) => data.result)
           .then((arr) => {
             setRecipeList(arr)
-          });
+          }).catch((e) => {
+                
+        });
     }
 
     useEffect(()=>{
@@ -62,24 +64,26 @@ export default function Apps() {
             method: 'PUT'
         })
           .then((res) => {
-              console.log("HEYYY");
+            //   console.log("HEYYY");
                 return res.json();
             })
           .then((data) => {
-            console.log("RESULT",data.result);
+            // console.log("RESULT",data.result);
             servicecallForRecipes()
-          });
+          }).catch((e) => {
+                
+        });
 
 
         console.log("## inside handleOnClickEnableDisable---", id);
         if (document.getElementById("enDis" + id.id).innerHTML == "Enable") {
 
-            console.log("Enable was clicked");
+            // console.log("Enable was clicked");
             document.getElementById("enDis" + id.id).innerHTML = "Disable";
             //On click of enable
         } else if (document.getElementById("enDis" + id.id).innerHTML == "Disable") {
 
-            console.log("Disable was clicked");
+            // console.log("Disable was clicked");
             document.getElementById("enDis" + id.id).innerHTML = "Enable"
 
             //On click of diable
@@ -92,17 +96,17 @@ export default function Apps() {
         handleShow()
         setSelectedName(i.name)
         setSelectedList(i.recipes)
-        console.log("## inside handleOnClickRun---", i.recipes);
+        // console.log("## inside handleOnClickRun---", i.recipes);
 
     }
     const onImport = (e) => {
 
-        console.log("## inside onImport---", e);
+        // console.log("## inside onImport---", e);
 
     }
     const handleOnClickDelete = (id, e) => {
 
-        console.log("## inside handleOnClickDelete---", id);
+        // console.log("## inside handleOnClickDelete---", id);
         document.getElementById(id.id).style.display = "none";
         //Call logic for deletion of app;
         const apiUrl = URL+'recipes/'+id.name;
@@ -110,12 +114,14 @@ export default function Apps() {
             method: 'DELETE'
         })
             .then((res) => {
-                console.log("HEYYY");
+                // console.log("HEYYY");
                 return res.json();
             })
             .then((data) => {
-                console.log("RESULT", data.result);
+                // console.log("RESULT", data.result);
                 servicecallForRecipes();
+            }).catch((e) => {
+                
             }); 
     }
 
@@ -135,8 +141,8 @@ export default function Apps() {
     }
     const handleOnClickImport = async ( e) => {
 
-        console.log("##1",e.target.files);
-        console.log("##2",e.target.files[0]);
+        // console.log("##1",e.target.files);
+        // console.log("##2",e.target.files[0]);
         let file = e.target.files[0]
         if (file) {
             var reader = new FileReader();
@@ -156,6 +162,9 @@ export default function Apps() {
                     console.log("HEYYY after put api call");
                     window.location.reload();
 
+                    })
+                    .catch((e) => {
+                
                     })
                 ;
             }
@@ -183,7 +192,7 @@ export default function Apps() {
             {/* <Button onClick={handleShow}>Create App</Button> */}
             {/* {returnModal()} */}
             {recipeList.map(function (i) {
-                {console.log("Inside - ", i)}
+                // {console.log("Inside - ", i)}
                 let intRecipeSize = i.relationships.length;
                 // let imgSource = 
                 let index = i.id - 1;

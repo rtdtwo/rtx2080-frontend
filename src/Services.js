@@ -21,7 +21,10 @@ export default function Services(props) {
                 return res.json();
             })
           .then((data) => data.result)
-          .then((arr) => setServices(arr));
+          .then((arr) => setServices(arr))
+          .catch((e) => {
+                
+        });
         // setThings(dummy[0]);
         console.log("##services - ", lstDisplayedServices);
     }

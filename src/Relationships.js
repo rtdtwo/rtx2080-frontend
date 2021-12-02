@@ -29,7 +29,9 @@ export default function Relationships() {
           .then((arr) => {
             // console.log("Array - ", arr);
             setServices(arr)
-          });
+          }).catch((e) => {
+                
+        });
         // setThings(dummy[0]);
         // console.log("##services - ", services);
     }
@@ -44,7 +46,9 @@ export default function Relationships() {
           .then((arr) => {
             // console.log("Array relations - " ,arr)
             setRelationdata(arr)
-          });
+          }).catch((e) => {
+                
+        });
         // setThings(dummy[0]);
         // console.log("##services - ", relationdata);
     }

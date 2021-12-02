@@ -27,7 +27,10 @@ export default function Tab() {
                 return res.json();
             })
           .then((data) => data.result)
-          .then((arr) => setThings(arr));
+          .then((arr) => setThings(arr))
+          .catch((e) => {
+                
+        });
         // setThings(dummy[0]);
         // console.log(things);
     }

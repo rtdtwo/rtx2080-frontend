@@ -13,7 +13,7 @@ function RecipeModal(props) {
     // {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}},{"id":"relationship5","name":"relationship5","service1":{"id":7,"thingId":7,"name":"Service7","icon":"","desc":""},"service2":{"id":8,"thingId":8,"name":"Service8","icon":"","desc":""}},{"id":"relationship6","name":"relationship6","service1":{"id":9,"thingId":9,"name":"Service9","icon":"","desc":""},"service2":{"id":10,"thingId":10,"name":"Service10","icon":"","desc":""}},{"id":"relationship7","name":"relationship7","service1":{"id":12,"thingId":9,"name":"Service12","icon":"","desc":""},"service2":{"id":11,"thingId":10,"name":"Service11","icon":"","desc":""}}]
     // let lst = JSON.parse(JSON.stringify(props.recipeData));
     let lst= props.recipeData
-    // console.log("Recipe modal list- ", lst)
+    console.log("Recipe modal list- ", props.relationdata)
     // console.log("Recipe modal list- ", relationList)
     
     // setRelationList(lst)
@@ -21,6 +21,7 @@ function RecipeModal(props) {
     
     
     let fData = props.relationdata.filter(ar => !lst.find(rm => (rm.name == ar.name)));
+    console.log("Recipe modal list- ", fData)
     const [relationList,setRelationList]=useState(lst);
     const [filteredData, setFilteredData] = useState(fData) 
     const [recipeName, setRecipeName] = useState(props.name)
@@ -54,6 +55,9 @@ function RecipeModal(props) {
                 props.setShow(false)
                 setRecipeName("")
                 //   data.result
+            })
+            .catch((e) => {
+
             });
             
             //   props.setShow(false)
@@ -127,11 +131,11 @@ function RecipeModal(props) {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-
+                            {console.log("About to render: ",filteredData)}
                             {filteredData.map(function (i) {
                             return (
                                 <>
-                                    <Dropdown.Item eventKey={i.name}>{i.name}</Dropdown.Item>
+                                    <Dropdown.Item eventKey={i.id}>{i.id}</Dropdown.Item>
                                 </>
                             )})}
                         </Dropdown.Menu>

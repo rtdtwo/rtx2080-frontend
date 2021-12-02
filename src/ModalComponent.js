@@ -17,13 +17,13 @@ function ModalComponent(props) {
         // setUpdatedList(prevState => {
         //     return [...prevState, a]
         // })
-        console.log("update - ",a);
+        // console.log("update - ",a);
     }
 
     const relationshipServiceCall = () => {
-        console.log("Before service call - ", updatedList)
+        // console.log("Before service call - ", updatedList)
         let data = {"name":relationName, "desc":"Created relation", "service1":updatedList[0].id,"service2":updatedList[1].id}
-        console.log("Before service call - ", data)
+        // console.log("Before service call - ", data)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -33,15 +33,17 @@ function ModalComponent(props) {
         
         fetch(URL+"relationships",requestOptions)
           .then((res) => {
-              console.log("HEYYY");
+            //   console.log("HEYYY");
                 return res.json();
             })
           .then((data) => {
-              console.log("RESULT",data.result);
+            //   console.log("RESULT",data.result);
               props.setShow(false)
               setRelationName("")
             //   data.result
-          });
+          }).catch((e) => {
+                
+        });
 
         //   props.setShow(false)
     }

@@ -185,7 +185,7 @@ export const Test = (props) => {
     let newList = items.filter( (el)=> {
           return el.column === "Relationships";
       });
-      console.log("Filter - ", newList)
+      // console.log("Filter - ", newList)
     props.setList(newList);
   }, items)
   const moveCardHandler = (dragIndex, hoverIndex) => {
@@ -221,7 +221,6 @@ export const Test = (props) => {
 //       ));
 //   };
   const returnItemsForColumn = (columnName) => {
-    console.log("ITEMs - ", items)
     return items
       .filter((item) => item.column === columnName)
       .map((item, index) => (

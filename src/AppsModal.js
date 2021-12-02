@@ -13,15 +13,17 @@ function AppsModal(props) {
         const apiUrl = URL+'recipes/'+props.recipeID+"/run";
         fetch(apiUrl)
           .then((res) => {
-              console.log("HEYYY");
+            //   console.log("HEYYY");
                 return res.json();
             })
           .then((data) => data.result)
           .then((arr) => {
-              console.log("Array - ", arr)
-              setLogList(arr[0].result);
+            //   console.log("Array - ", arr)
+              setLogList(arr.result);
               setLoading(false);
-          });
+          }).catch((e) => {
+                
+        });
         // setThings(dummy[0]);
         // console.log(things);
     }
@@ -59,13 +61,13 @@ function AppsModal(props) {
                                     </Card.Header>
                                     <Card.Body>
                                         {logList.map(function (i) {
-                                            {console.log("LOGLIST ITEM : ", i)}
+                                            // {console.log("LOGLIST ITEM : ", i)}
                                             return (
                                                     <Card.Text>
                                                         <p>RelationShip : {i.relationship.name}</p>
                                                         {
                                                             i.result.map(function (j){
-                                                                {console.log("LOGLIST relation - ", j)}
+                                                                // {console.log("LOGLIST relation - ", j)}
                                                                 return (<p> <span>&#183;</span> {j.service.name} result : <span  style={{backgroundColor: 'green'}}>{j.result[1].Status}</span></p>)
                                                             })
                                                         }

@@ -26,7 +26,9 @@ export default function Recipe() {
           .then((data) => data.result)
           .then((arr) => {
             setRecipeList(arr)
-          });
+          }).catch((e) => {
+                
+        });
     }
     const servicecallForRelationships = ()=> {
         const apiUrl = URL+'relationships';
@@ -37,8 +39,11 @@ export default function Recipe() {
             })
           .then((data) => data.result)
           .then((arr) => {
+              console.log("Relations in recipe - ", arr)
             setRelationdata(arr)
-          });
+          }).catch((e) => {
+                
+        });
     }
 
     useEffect(()=>{
