@@ -4,6 +4,8 @@ import { Container, Dropdown, Row, Col, Button, Icon, Form } from 'react-bootstr
 // import deleteImg from '../src/delete.png';
 import AppsModal from './AppsModal'
 import { URL } from "./test/constants";
+import Image from 'react-bootstrap/Image'
+import logo from './logo.svg'; // with import
 
 export default function Apps() {
 
@@ -161,6 +163,55 @@ export default function Apps() {
             }); 
     }
 
+    const handleOnClickExport = async (recipeJson, e) => {
+
+        const fileName = "export";
+        const json = JSON.stringify(recipeJson);
+        const blob = new Blob([json],{type:'application/json'});
+        const href = await global.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = href;
+        link.download = fileName + ".json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+    }
+    const handleOnClickImport = async ( e) => {
+
+        console.log("##1",e.target.files);
+        console.log("##2",e.target.files[0]);
+        let file = e.target.files[0]
+        if (file) {
+            var reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = function (evt) {
+                const jsonData = JSON.parse(evt.target.result)
+                console.log("##3",jsonData);
+                window.alert("App has been imported successfully!");
+
+                const apiUrl = URL+'recipes/import';
+                fetch(apiUrl,{
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(jsonData)
+                })
+                .then((res) => {
+                    console.log("HEYYY after put api call");
+                    window.location.reload();
+
+                    })
+                ;
+            }
+            reader.onerror = function (evt) {
+                window.alert("Error importing.")
+            }
+
+
+        }
+                
+    }
+
 
     return (
         <Container className="mt-5">
@@ -168,7 +219,7 @@ export default function Apps() {
             <Form>
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Import App</Form.Label>
-                <Form.Control type="file" />
+                <Form.Control type="file" onChange= {(e) => handleOnClickImport(e)}/>
             </Form.Group>
           
             </Form>
@@ -178,11 +229,15 @@ export default function Apps() {
             {recipeList.map(function (i) {
                 {console.log("Inside - ", i)}
                 let intRecipeSize = i.relationships.length;
+                // let imgSource = 
                 let index = i.id - 1;
                 return (
                     <>
                         <Row id={i.id} className="mt-5 justify-content-md-center border rounded border-secondary">
                             <h4 className="mb-2 text-center">App {i.id}</h4>
+                            <Col>
+                                <Image src={logo} responsive />
+                            </Col>
                             <Col xs={5} className="" style={itemStyle}>
                                 <div className="text-start pt-2">
                                     <p><i className="bi bi-caret-right-fill"></i> <strong>Id: </strong>{i.id}</p>
@@ -202,6 +257,8 @@ export default function Apps() {
                                     <Button className="m-1" variant="danger" id={"delete" + i.id} size="sm" onClick={(e) => handleOnClickDelete(i, e)}>
                                         Delete
                                     </Button>
+                                    {i.enabled ? (<Button className="m-1" variant="primary" id={"export" + i.id} size="sm" onClick={(e) => handleOnClickExport(i, e)}>Export
+                                    </Button>) : ""}
                                     {/* <input className="form-check-input" type="radio" name={"flexRadioDefault"+i.appId} id={i.appId+100} defaultChecked='true'/>
                                 <label className="form-check-label" htmlFor={i.appId+100}>Enabled </label>
                                 <input className="form-check-input" type="radio" name={"flexRadioDefault"+i.appId} id={i.appId+21}/>
