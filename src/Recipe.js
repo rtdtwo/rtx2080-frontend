@@ -11,21 +11,60 @@ export default function Recipe() {
     const [show, setShow] = useState(false);
     const [selectedList, setSelectedList] = useState([]);
     const [selectedName, setSelectedName] = useState("");
+    const [lstExistingRecipes, setLstExistingRecipes] = useState([]);
+    const [relationdata, setRelationdata] = useState([]);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const servicecallForRecipes = ()=> {
+        const apiUrl = URL+'recipes';
+        fetch(apiUrl)
+          .then((res) => {
+              console.log("HEYYY");
+                return res.json();
+            })
+          .then((data) => data.result)
+          .then((arr) => {
+            // console.log("Array - ", arr);
+            setLstExistingRecipes(arr)
+          });
+        // setThings(dummy[0]);
+        // console.log("##services - ", services);
+    }
+    const servicecallForRelationships = ()=> {
+        const apiUrl = URL+'relationships';
+        fetch(apiUrl)
+          .then((res) => {
+              console.log("HEYYY");
+                return res.json();
+            })
+          .then((data) => data.result)
+          .then((arr) => {
+            // console.log("Array relations - " ,arr)
+            setLstExistingRecipes(arr)
+          });
+        // setThings(dummy[0]);
+        console.log("##services - ", relationdata);
+    }
+    useEffect(()=>{
+
+        servicecallForRecipes();
+        servicecallForRelationships();
+    }, [])
+
     const sendCreatedata = () =>{
         setSelectedName("Create")
         handleShow()
     }
     let selectedRelationship = null; 
-    const recipedata = [{"id":"recipe1","name":"recipe1","relationships":[{"id":"relationship1","name":"relationship1", "service1":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""},"service2":{"id":1,"thingId":2,"name":"Service1","icon":"","desc":""}},{"id":"realtion2","name":"realtion2", "service1":{"id":3,"thingId":4,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}}]}];
-    const relationdata = [{"id":1,"name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":2,"name":"relationship2","service1":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""},"service2":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""}},{"id":3,"name":"relationship3","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}}];
-    // console.log(relationdata[0])
-    const lstExistingRecipes = [{"id":"Recipe 1","name":"Recipe 1","relationships":[{"id":"relationship1","name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":"relationship2","name":"relationship2","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}},{"id":"relationship3","name":"relationship3","service1":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""},"service2":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""}},
-                                                                    {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}},{"id":"relationship5","name":"relationship5","service1":{"id":7,"thingId":7,"name":"Service7","icon":"","desc":""},"service2":{"id":8,"thingId":8,"name":"Service8","icon":"","desc":""}},{"id":"relationship6","name":"relationship6","service1":{"id":9,"thingId":9,"name":"Service9","icon":"","desc":""},"service2":{"id":10,"thingId":10,"name":"Service10","icon":"","desc":""}}]},
-                                {"id":"Recipe 2","name":"Recipe 2","relationships":[{"id":"relationship1","name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":"relationship2","name":"relationship2","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}},{"id":"relationship3","name":"relationship3","service1":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""},"service2":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""}},
-                                                                    {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}}]}
-                                       ];
+    // const recipedata = [{"id":"recipe1","name":"recipe1","relationships":[{"id":"relationship1","name":"relationship1", "service1":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""},"service2":{"id":1,"thingId":2,"name":"Service1","icon":"","desc":""}},{"id":"realtion2","name":"realtion2", "service1":{"id":3,"thingId":4,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}}]}];
+    // // const relationdata = [{"id":1,"name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":2,"name":"relationship2","service1":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""},"service2":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""}},{"id":3,"name":"relationship3","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}}];
+    // // console.log(relationdata[0])
+    // const lstExistingRecipes = [{"id":"Recipe 1","name":"Recipe 1","relationships":[{"id":"relationship1","name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":"relationship2","name":"relationship2","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}},{"id":"relationship3","name":"relationship3","service1":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""},"service2":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""}},
+    //                                                                 {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}},{"id":"relationship5","name":"relationship5","service1":{"id":7,"thingId":7,"name":"Service7","icon":"","desc":""},"service2":{"id":8,"thingId":8,"name":"Service8","icon":"","desc":""}},{"id":"relationship6","name":"relationship6","service1":{"id":9,"thingId":9,"name":"Service9","icon":"","desc":""},"service2":{"id":10,"thingId":10,"name":"Service10","icon":"","desc":""}}]},
+    //                             {"id":"Recipe 2","name":"Recipe 2","relationships":[{"id":"relationship1","name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":"relationship2","name":"relationship2","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}},{"id":"relationship3","name":"relationship3","service1":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""},"service2":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""}},
+    //                                                                 {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}}]}
+    //                                    ];
     const handleEditRecipe = (relJsonData, e)=> {
         selectedRelationship = [];
         selectedRelationship.push(relJsonData.relationships)
@@ -37,7 +76,7 @@ export default function Recipe() {
 
     const returnModal = ()=>{
         return (
-            <RecipeModal show={show} name={selectedName} recipeData={selectedList} dummyData={recipedata[0]} setShow={setShow}></RecipeModal>
+            <RecipeModal show={show} name={selectedName} recipeData={selectedList} relationdata={relationdata} setShow={setShow}></RecipeModal>
             // <RecipeModal show={show} name={recipedata[0].name} recipeData={recipedata[0]} setShow={setShow}></RecipeModal>
             // ""
         )

@@ -2,15 +2,34 @@ import React from 'react'
 import { Container, Dropdown } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import Card from './Card'
+import { URL } from "./test/constants";
 export default function Services(props) {
     
-    const services = [{"id":1,"thingId":1, "name":"Service 1", "icon": "", "desc":""}, {"id":3,"thingId":1, "name":"Service 3", "icon": "", "desc":""},{"id":2,"thingId":2, "name":"Service 2", "icon": "", "desc":""}];
     // let lstDisplayedServices= [];
-    console.log("##services",services);
+    console.log("##services - things: ",props.lstThings);
     let selectedThingId = null;
     const [value,setValue]=useState('All');
+    // const services = [{"id":1,"thingId":1, "name":"Service 1", "icon": "", "desc":""}, {"id":3,"thingId":1, "name":"Service 3", "icon": "", "desc":""},{"id":2,"thingId":2, "name":"Service 2", "icon": "", "desc":""}];
+    // const [lstDisplayedServices,setServices] = useState(services);
+    const [lstDisplayedServices,setServices] = useState([]);
 
-    const [lstDisplayedServices,setServices] = useState(services);
+    const servicecall = ()=> {
+        const apiUrl = URL+'services';
+        fetch(apiUrl)
+          .then((res) => {
+              console.log("HEYYY");
+                return res.json();
+            })
+          .then((data) => data.result)
+          .then((arr) => setServices(arr));
+        // setThings(dummy[0]);
+        console.log("##services - ", lstDisplayedServices);
+    }
+    useEffect(()=>{
+
+        servicecall();
+    }, [])
+
 
     const onselectThing=(e)=>{
 
@@ -26,17 +45,17 @@ export default function Services(props) {
         let randomLst = [];
         if(selectedThingId == "All") {
 
-            randomLst = services;
+            randomLst = lstDisplayedServices;
             setServices(randomLst);
             return;
         }
         console.log("##selectedThingId",selectedThingId);
-        for (let index = 0; index < services.length; index++) {
+        for (let index = 0; index < lstDisplayedServices.length; index++) {
 
-            console.log("services",services[index]);    
-            if(services[index].thingId == selectedThingId) {
+            // console.log("services",lstDisplayedServices[index]);    
+            if(lstDisplayedServices[index].thing.id == selectedThingId) {
 
-                randomLst.push(services[index]);
+                randomLst.push(lstDisplayedServices[index]);
             }            
         }  
         console.log("##lstDisplayedServices--",randomLst); 
@@ -60,7 +79,7 @@ export default function Services(props) {
                     {props.lstThings.map(function (i) {
                     return (
                         <>
-                            <Dropdown.Item eventKey={i.id}>{i.name}</Dropdown.Item>
+                            <Dropdown.Item eventKey={i.id}>{i.id}</Dropdown.Item>
                         </>
                     )})}
                 </Dropdown.Menu>
@@ -69,6 +88,7 @@ export default function Services(props) {
             
             
             {/* <h4>You selected {value}</h4> */}
+            {console.log("##services - ", lstDisplayedServices)}
             {lstDisplayedServices.map(function (i) {
                     return (
                         <Card id={i.id} name={i.name} className='servicecard' desc={i.desc} showDesc='false' draggable='false'>

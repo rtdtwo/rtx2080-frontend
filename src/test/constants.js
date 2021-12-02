@@ -4,3 +4,6 @@ export const COLUMN_NAMES = {
     // AWAITING_REVIEW: 'Awaiting review',
     // DONE: 'Done',
 }
+
+
+export const URL = "http://8031-184-188-101-162.ngrok.io/"

@@ -3,6 +3,7 @@ import { Nav } from 'react-bootstrap';
 import Things from './Things';
 import Services from './Services';
 import { useState, useEffect } from 'react';
+import { URL } from "./test/constants";
 // import { Router } from 'react-router';
 import {
     BrowserRouter as Router,
@@ -17,19 +18,19 @@ import Apps from './Apps';
 
 export default function Tab() {
 
-    const dummy = [[{desc:"",id:1, name:"Thing1"}, {desc:"",id:2, name:"Thing2"},]];
+    // const dummy = [[{desc:"",id:1, name:"Thing1"}, {desc:"",id:2, name:"Thing2"},]];
     const [things, setThings] = useState([])
     const servicecall = ()=> {
-        // const apiUrl = 'http://ef31-184-188-101-162.ngrok.io/things';
-        // fetch(apiUrl)
-        //   .then((res) => {
-        //       console.log("HEYYY");
-        //         return res.json();
-        //     })
-        //   .then((data) => data.result)
-        //   .then((arr) => setThings(arr));
-        setThings(dummy[0]);
-        console.log(dummy[0]);
+        const apiUrl = URL+'things';
+        fetch(apiUrl)
+          .then((res) => {
+              console.log("HEYYY");
+                return res.json();
+            })
+          .then((data) => data.result)
+          .then((arr) => setThings(arr));
+        // setThings(dummy[0]);
+        // console.log(things);
     }
     useEffect(()=>{
 

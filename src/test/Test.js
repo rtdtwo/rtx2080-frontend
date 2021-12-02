@@ -179,12 +179,13 @@ const Column = ({ children, className, title }) => {
 };
 
 export const Test = (props) => {
-  const [items, setItems] = useState(props.list);
+  // const [items, setItems] = useState(props.list);
+  const [items, setItems] = useState(tasks);
   useEffect(()=>{
     let newList = items.filter( (el)=> {
           return el.column === "Relationships";
       });
-      // console.log("Filter - ", newList)
+      console.log("Filter - ", newList)
     props.setList(newList);
   }, items)
   const moveCardHandler = (dragIndex, hoverIndex) => {
@@ -225,7 +226,8 @@ export const Test = (props) => {
       .map((item, index) => (
         <MovableItem
           key={item.id}
-          name={item.name}
+          name={item.id}
+          // name={item.name}
           currentColumnName={item.column}
           setItems={setItems}
           index={index}

@@ -8,8 +8,8 @@ import { useState, useEffect } from 'react';
 function RecipeModal(props) {
     
     // const relationdata = [{"name":"relationship1","id":"relationship1", "service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""},"service1":{"id":1,"thingId":2,"name":"Service1","icon":"","desc":""}},{"id":1,"name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":2,"name":"relationship2","service1":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""},"service2":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""}},{"id":3,"name":"relationship3","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}}];
-    const relationdata = [{"id":"relationship1","name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":"relationship2","name":"relationship2","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}},{"id":"relationship3","name":"relationship3","service1":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""},"service2":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""}},
-    {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}},{"id":"relationship5","name":"relationship5","service1":{"id":7,"thingId":7,"name":"Service7","icon":"","desc":""},"service2":{"id":8,"thingId":8,"name":"Service8","icon":"","desc":""}},{"id":"relationship6","name":"relationship6","service1":{"id":9,"thingId":9,"name":"Service9","icon":"","desc":""},"service2":{"id":10,"thingId":10,"name":"Service10","icon":"","desc":""}},{"id":"relationship7","name":"relationship7","service1":{"id":12,"thingId":9,"name":"Service12","icon":"","desc":""},"service2":{"id":11,"thingId":10,"name":"Service11","icon":"","desc":""}}]
+    // const relationdata = [{"id":"relationship1","name":"relationship1","service1":{"id":1,"thingId":1,"name":"Service1","icon":"","desc":""},"service2":{"id":2,"thingId":2,"name":"Service2","icon":"","desc":""}},{"id":"relationship2","name":"relationship2","service1":{"id":3,"thingId":3,"name":"Service3","icon":"","desc":""},"service2":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""}},{"id":"relationship3","name":"relationship3","service1":{"id":4,"thingId":4,"name":"Service4","icon":"","desc":""},"service2":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""}},
+    // {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}},{"id":"relationship5","name":"relationship5","service1":{"id":7,"thingId":7,"name":"Service7","icon":"","desc":""},"service2":{"id":8,"thingId":8,"name":"Service8","icon":"","desc":""}},{"id":"relationship6","name":"relationship6","service1":{"id":9,"thingId":9,"name":"Service9","icon":"","desc":""},"service2":{"id":10,"thingId":10,"name":"Service10","icon":"","desc":""}},{"id":"relationship7","name":"relationship7","service1":{"id":12,"thingId":9,"name":"Service12","icon":"","desc":""},"service2":{"id":11,"thingId":10,"name":"Service11","icon":"","desc":""}}]
     // let lst = JSON.parse(JSON.stringify(props.recipeData));
     let lst= props.recipeData
     
@@ -27,8 +27,9 @@ function RecipeModal(props) {
     // console.log("recipe dummy lst - ", dummylst.relationships)
     // console.log("recipe lst - ", relationdata)
     // let filteredData = relationdata.filter(ar => !dummylst.relationships.find(rm => (rm.name === ar.name)));
-    let fData = relationdata.filter(ar => !lst.find(rm => (rm.name == ar.name)));
+    let fData = props.relationdata.filter(ar => !lst.find(rm => (rm.name == ar.name)));
     const [filteredData, setFilteredData] = useState([]) 
+    const [relationName, setRelationName] = useState("")
     // console.log("recipe filteredData - ", filteredData)
     // const [list, setList] = useState(lst)
     // const [newItemsList, setNewItemsList] = useState(filteredData)
@@ -97,6 +98,9 @@ function RecipeModal(props) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                <div className="mb-3 text-center justify-content-center">
+                        <input type="text" value={relationName} onChange={(e)=>{setRelationName(e.target.value)}} className="form-control" style={{ width: '100%' }} placeholder="Enter the relationship name" aria-label="Username" aria-describedby="basic-addon1"/>
+                    </div>
                 <div className="mb-3">
                     Select Relationships: 
                     <Dropdown className onSelect={onselectThing}>
