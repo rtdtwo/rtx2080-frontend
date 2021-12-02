@@ -22,7 +22,7 @@ function ModalComponent(props) {
 
     const relationshipServiceCall = () => {
         console.log("Before service call - ", updatedList)
-        let data = {"name":"relationship", "desc":"Created relation", "service1":updatedList[0].id,"service2":updatedList[1].id}
+        let data = {"name":relationName, "desc":"Created relation", "service1":updatedList[0].id,"service2":updatedList[1].id}
         console.log("Before service call - ", data)
         const requestOptions = {
             method: 'POST',
@@ -39,6 +39,7 @@ function ModalComponent(props) {
           .then((data) => {
               console.log("RESULT",data.result);
               props.setShow(false)
+              setRelationName("")
             //   data.result
           });
 
