@@ -53,7 +53,6 @@ export default function Recipe() {
     }, [show])
 
     const sendCreatedata = () =>{
-        setSelectedName("Create")
         setSelectedList([])
         handleShow()
     }

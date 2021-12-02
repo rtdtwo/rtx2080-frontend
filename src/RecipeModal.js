@@ -23,7 +23,7 @@ function RecipeModal(props) {
     let fData = props.relationdata.filter(ar => !lst.find(rm => (rm.name == ar.name)));
     const [relationList,setRelationList]=useState(lst);
     const [filteredData, setFilteredData] = useState(fData) 
-    const [recipeName, setRecipeName] = useState("")
+    const [recipeName, setRecipeName] = useState(props.name)
     
     const recipeServiceCall = () => {
         if(recipeName === ""){
@@ -111,7 +111,7 @@ function RecipeModal(props) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {props.name}
+                        Edit/Create Recipe
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

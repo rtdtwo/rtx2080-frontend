@@ -96,24 +96,41 @@ export default function Apps() {
     // }
     const [selectedList, setSelectedList] = useState([]);
     const [selectedName, setSelectedName] = useState("");
+    const [recipeID, setRecipeID] = useState("");
 
     const handleOnClickEnableDisable = (id, e) => {
+        const apiUrl = URL+'recipes/'+id.name+"/enableDisable";
+        fetch(apiUrl,{
+            method: 'PUT'
+        })
+          .then((res) => {
+              console.log("HEYYY");
+                return res.json();
+            })
+          .then((data) => {
+            console.log("RESULT",data.result);
+            servicecallForRecipes()
+          });
+
 
         console.log("## inside handleOnClickEnableDisable---", id);
-        if (document.getElementById("enDis" + id).innerHTML == "Enable") {
+        if (document.getElementById("enDis" + id.id).innerHTML == "Enable") {
 
             console.log("Enable was clicked");
-            document.getElementById("enDis" + id).innerHTML = "Disable";
+            document.getElementById("enDis" + id.id).innerHTML = "Disable";
             //On click of enable
-        } else if (document.getElementById("enDis" + id).innerHTML == "Disable") {
+        } else if (document.getElementById("enDis" + id.id).innerHTML == "Disable") {
 
             console.log("Disable was clicked");
-            document.getElementById("enDis" + id).innerHTML = "Enable"
+            document.getElementById("enDis" + id.id).innerHTML = "Enable"
 
             //On click of diable
         }
+
+        
     }
     const handleOnClickRun = (i, e) => {
+        setRecipeID(i.id)
         handleShow()
         setSelectedName(i.name)
         setSelectedList(i.recipes)
@@ -128,25 +145,26 @@ export default function Apps() {
     const handleOnClickDelete = (id, e) => {
 
         console.log("## inside handleOnClickDelete---", id);
-        document.getElementById(id).style.display = "none";
-        //Call logic for deletion of app;       
+        document.getElementById(id.id).style.display = "none";
+        //Call logic for deletion of app;
+        const apiUrl = URL+'recipes/'+id.name;
+        fetch(apiUrl, {
+            method: 'DELETE'
+        })
+            .then((res) => {
+                console.log("HEYYY");
+                return res.json();
+            })
+            .then((data) => {
+                console.log("RESULT", data.result);
+                servicecallForRecipes();
+            }); 
     }
 
-    // const returnModal = ()=>{
-    //     return (
-    //         // <AppsModal show={show} name={selectedName} recipeData={selectedList} setShow={setShow}></AppsModal>
-    //         // <RecipeModal show={show} name={recipedata[0].name} recipeData={recipedata[0]} setShow={setShow}></RecipeModal>
-    //         ""
-    //     )
-    // }
-
-    // var divStyle = {
-    //     display:this.state.disableDiv?'block':'none'
-    // };
 
     return (
         <Container className="mt-5">
-            {show ? (<AppsModal show={show} setShow={setShow}></AppsModal>) : ""}
+            {show ? (<AppsModal show={show} recipeID={recipeID} setShow={setShow}></AppsModal>) : ""}
             <Form>
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Import App</Form.Label>
@@ -157,18 +175,10 @@ export default function Apps() {
             {/* <Button variant ="success" onClick={onImport}>Import App</Button> */}
             {/* <Button onClick={handleShow}>Create App</Button> */}
             {/* {returnModal()} */}
-            {console.log("Apps tab - ", recipeList)}
             {recipeList.map(function (i) {
-
+                {console.log("Inside - ", i)}
                 let intRecipeSize = i.relationships.length;
                 let index = i.id - 1;
-                //     if(i.enabled == "true") {
-
-                //         setBtnTitle("Disable");
-                //     } else {
-
-                //         setBtnTitle("Enable");
-                //    }
                 return (
                     <>
                         <Row id={i.id} className="mt-5 justify-content-md-center border rounded border-secondary">
@@ -183,13 +193,13 @@ export default function Apps() {
                             </Col>
                             <Col xs={4} style={itemStyle}>
                                 <div className="text-end pt-2">
-                                    <Button variant="primary" id={"enDis" + i.id} size="sm" onClick={(e) => handleOnClickEnableDisable(i.id, e)}>
-                                        {i.enabled == "true" ? "Disable" : "Enable"}
+                                    <Button className="m-1" variant="primary" id={"enDis" + i.id} size="sm" onClick={(e) => handleOnClickEnableDisable(i, e)}>
+                                        {i.enabled ? "Disable" : "Enable"}
                                     </Button>
-                                    <Button variant="success" id={"run" + i.id} size="sm" onClick={(e) => handleOnClickRun(i, e)}>
-                                        Run
-                                    </Button>
-                                    <Button variant="danger" id={"delete" + i.id} size="sm" onClick={(e) => handleOnClickDelete(i.id, e)}>
+                                    {i.enabled ? (<Button className="m-1" variant="success" id={"run" + i.id} size="sm" onClick={(e) => handleOnClickRun(i, e)}>Run
+                                    </Button>) : ""}
+                                    
+                                    <Button className="m-1" variant="danger" id={"delete" + i.id} size="sm" onClick={(e) => handleOnClickDelete(i, e)}>
                                         Delete
                                     </Button>
                                     {/* <input className="form-check-input" type="radio" name={"flexRadioDefault"+i.appId} id={i.appId+100} defaultChecked='true'/>
