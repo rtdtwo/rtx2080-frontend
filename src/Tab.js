@@ -43,23 +43,31 @@ export default function Tab() {
 
         // <div>
             <Router>
-                <Nav fill variant="tabs" defaultActiveKey="/home">
+                <Nav fill variant="tabs" defaultActiveKey="/">
                     <Nav.Item>
                         <Nav.Link eventKey="/">
-                            <Link to="/">Things </Link>
+                            <Link to="/" className="text-decoration-none">Things </Link>
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/services" eventKey="/services">Services</Nav.Link>
+                        <Nav.Link eventKey="/services">
+                            <Link to="/services" className="text-decoration-none">Services </Link>
+                        </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href='/relations' eventKey="link-2">Relationships</Nav.Link>
+                        <Nav.Link eventKey="/relations">
+                            <Link to="/relations" className="text-decoration-none">Relationships </Link>
+                        </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href='/recipe' eventKey="link-3">Recipe</Nav.Link>
+                        <Nav.Link eventKey="/recipe">
+                            <Link to="/recipe" className="text-decoration-none">Recipe </Link>
+                        </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href='/apps' eventKey="link-4">Apps</Nav.Link>
+                        <Nav.Link eventKey="/apps">
+                            <Link to="/apps" className="text-decoration-none">Apps </Link>
+                        </Nav.Link>
                     </Nav.Item>
                 </Nav>
                 {/* <Routes> */}

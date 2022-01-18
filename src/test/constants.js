@@ -6,4 +6,4 @@ export const COLUMN_NAMES = {
 }
 
 
-export const URL = "http://8031-184-188-101-162.ngrok.io/"
+export const URL = "https://d93d-184-188-101-162.ngrok.io/"

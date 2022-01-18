@@ -12,6 +12,9 @@ code {
     monospace;
 }
 
+Link a{
+  text-decoration: none;
+}
 
 .flexbox{
   display: flex;

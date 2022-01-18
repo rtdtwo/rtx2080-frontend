@@ -68,7 +68,7 @@ function AppsModal(props) {
                                                         {
                                                             i.result.map(function (j){
                                                                 // {console.log("LOGLIST relation - ", j)}
-                                                                return (<p> <span>&#183;</span> {j.service.name} result : <span  style={{backgroundColor: 'green'}}>{j.result[1].Status}</span></p>)
+                                                                return (<p> <span>&#183;</span> {j.service.name} result : <span  style={{backgroundColor: 'green'}}>successful</span></p>)
                                                             })
                                                         }
                                                     </Card.Text>

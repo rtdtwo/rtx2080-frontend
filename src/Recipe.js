@@ -71,6 +71,7 @@ export default function Recipe() {
     //                                                                 {"id":"relationship4","name":"relationship4","service1":{"id":5,"thingId":5,"name":"Service5","icon":"","desc":""},"service2":{"id":6,"thingId":6,"name":"Service6","icon":"","desc":""}}]}
                                     //    ];
     const handleEditRecipe = (relJsonData, e)=> {
+        console.log("Not crashed - ", relJsonData)
         selectedRelationship = [];
         selectedRelationship.push(relJsonData.relationships)
         setSelectedList(relJsonData.relationships)

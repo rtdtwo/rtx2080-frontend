@@ -61,7 +61,7 @@ function ModalComponent(props) {
                 size='xl'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title>Create Relationship</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div style={{display: 'flex', justifyContent: 'center'}} className="mb-3 text-center justify-content-center">
